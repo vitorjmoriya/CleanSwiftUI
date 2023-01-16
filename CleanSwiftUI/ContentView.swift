@@ -3,46 +3,60 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "person")
-                        .foregroundColor(.black)
-
-                    VStack(alignment: .leading) {
-                        Text("Name Surname")
-                        Text("Person A")
-                            .foregroundColor(.gray)
-                            .font(.footnote)
-                    }
-                    .padding(.leading, 10)
-                }
-
-                Divider()
-
-                HStack {
-                    Image(systemName: "person.circle")
-                        .foregroundColor(.blue)
-
-                    Text("This is item number one")
-                        .foregroundColor(.blue)
-                }
-                .padding(.vertical, 10)
-
-                Divider()
-
-                HStack {
-                    Image(systemName: "person")
-                        .foregroundColor(.red)
-
-                    Text("This is item number two")
-                        .foregroundColor(.red)
-                }
-                .padding(.top, 10)
-
-                Divider()
-            }
-            .padding()
+            content
         }
+    }
+
+    @ViewBuilder private var content: some View {
+        VStack(alignment: .leading) {
+            personInfo
+            renderListItemOne()
+            renderListItemTwo()
+        }
+        .padding()
+    }
+
+    @ViewBuilder private var personInfo: some View {
+        HStack {
+            Image(systemName: "person")
+                .foregroundColor(.black)
+
+            VStack(alignment: .leading) {
+                Text("Name Surname")
+                Text("Person A")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+            }
+            .padding(.leading, 10)
+        }
+
+        Divider()
+    }
+
+    @ViewBuilder private func renderListItemOne() -> some View {
+        HStack {
+            Image(systemName: "person.circle")
+                .foregroundColor(.blue)
+
+            Text("This is item number one")
+                .foregroundColor(.blue)
+        }
+        .padding(.vertical, 10)
+
+        Divider()
+    }
+
+    @ViewBuilder private func renderListItemTwo() -> some View {
+        HStack {
+            Image(systemName: "person")
+                .foregroundColor(.red)
+
+            Text("This is item number two")
+                .foregroundColor(.red)
+        }
+        .padding(.top, 10)
+
+        Divider()
     }
 }
 
