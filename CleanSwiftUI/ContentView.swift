@@ -10,8 +10,8 @@ struct ContentView: View {
     @ViewBuilder private var content: some View {
         VStack(alignment: .leading) {
             personInfo
-            renderListItemOne()
-            renderListItemTwo()
+            renderListItem(type: .one)
+            renderListItem(type: .two)
         }
         .padding()
     }
@@ -33,30 +33,51 @@ struct ContentView: View {
         Divider()
     }
 
-    @ViewBuilder private func renderListItemOne() -> some View {
+    @ViewBuilder private func renderListItem(type: ListItemType) -> some View {
         HStack {
-            Image(systemName: "person.circle")
-                .foregroundColor(.blue)
+            Image(systemName: type.imageName)
+                .foregroundColor(type.foregroundColor)
 
-            Text("This is item number one")
-                .foregroundColor(.blue)
+            Text(type.description)
+                .foregroundColor(type.foregroundColor)
         }
         .padding(.vertical, 10)
 
         Divider()
     }
+}
 
-    @ViewBuilder private func renderListItemTwo() -> some View {
-        HStack {
-            Image(systemName: "person")
-                .foregroundColor(.red)
+extension ContentView {
+    enum ListItemType {
+        case one
+        case two
 
-            Text("This is item number two")
-                .foregroundColor(.red)
+        var imageName: String {
+            switch self {
+            case .one:
+                return "person.circle"
+            case .two:
+                return "person"
+            }
         }
-        .padding(.top, 10)
 
-        Divider()
+        var description: String {
+            switch self {
+            case .one:
+                return "This is item number one"
+            case .two:
+                return "This is item number two"
+            }
+        }
+
+        var foregroundColor: Color {
+            switch self {
+            case .one:
+                return .blue
+            case .two:
+                return .red
+            }
+        }
     }
 }
 
