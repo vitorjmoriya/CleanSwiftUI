@@ -8,16 +8,16 @@ struct ContentView: View {
     }
 
     @ViewBuilder private var content: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             personInfo
             renderListItem(type: .one)
             renderListItem(type: .two)
         }
-        .padding()
+        .padding(16)
     }
 
     @ViewBuilder private var personInfo: some View {
-        HStack {
+        HStack(spacing: 10) {
             Image(systemName: "person")
                 .foregroundColor(.black)
 
@@ -27,21 +27,18 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                     .font(.footnote)
             }
-            .padding(.leading, 10)
         }
 
         Divider()
     }
 
     @ViewBuilder private func renderListItem(type: ListItemType) -> some View {
-        HStack {
+        HStack(spacing: 10) {
             Image(systemName: type.imageName)
-                .foregroundColor(type.foregroundColor)
 
             Text(type.description)
-                .foregroundColor(type.foregroundColor)
         }
-        .padding(.vertical, 10)
+        .foregroundColor(type.foregroundColor)
 
         Divider()
     }
