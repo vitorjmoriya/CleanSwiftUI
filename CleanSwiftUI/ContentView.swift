@@ -8,16 +8,16 @@ struct ContentView: View {
     }
 
     @ViewBuilder private var content: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: Constant.listSpacing) {
             personInfo
             renderListItem(type: .one)
             renderListItem(type: .two)
         }
-        .padding(16)
+        .padding(Constant.globalPadding)
     }
 
     @ViewBuilder private var personInfo: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: Constant.imageLabelSpacing) {
             Image(systemName: "person")
                 .foregroundColor(.black)
 
@@ -33,7 +33,7 @@ struct ContentView: View {
     }
 
     @ViewBuilder private func renderListItem(type: ListItemType) -> some View {
-        HStack(spacing: 10) {
+        HStack(spacing: Constant.imageLabelSpacing) {
             Image(systemName: type.imageName)
 
             Text(type.description)
@@ -75,6 +75,14 @@ extension ContentView {
                 return .red
             }
         }
+    }
+}
+
+extension ContentView {
+    enum Constant {
+        static let globalPadding: CGFloat = 16
+        static let listSpacing: CGFloat = 8
+        static let imageLabelSpacing: CGFloat = 10
     }
 }
 
